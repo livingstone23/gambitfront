@@ -1,0 +1,31 @@
+@import "~/src/scss/index.scss";
+
+.container {
+    padding-top: 70px;
+
+    > a {
+        display: block;
+        width: fit-content;
+        margin: 0 auto;
+        margin-bottom: 50px;
+
+        > img {
+            height: 50px;
+        }
+    }
+
+    > div {
+        display: flex;
+    }
+}
+
+.left {
+    width: 50%;
+    border-right: 1px solid $border-primary;
+    padding: 40px 60px 40px 40px;
+}
+
+.right {
+    width: 50%;
+    padding: 40px 60px 40px 40px;
+}
