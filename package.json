@@ -11,12 +11,15 @@
   "dependencies": {
     "amazon-cognito-identity-js": "^6.3.1",
     "aws-amplify": "^5.3.3",
-    "aws-sdk": "^2.1410.0",
+    "aws-sdk": "^2.1414.0",
+    "formik": "^2.4.2",
+    "lodash": "^4.17.21",
     "next": "13.4.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sass": "^1.63.6",
     "semantic-ui-css": "^2.5.0",
-    "semantic-ui-react": "^2.1.4"
+    "semantic-ui-react": "^2.1.4",
+    "yup": "^1.2.0"
   }
 }

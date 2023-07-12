@@ -1,10 +1,12 @@
 import { JoinLayout } from "@/layouts";
+import { RegisterForm } from "@/components/Auth"
+
 
 export default function RegisterPage() {
   return (
     <JoinLayout>
         <h2>
-            Registro...
+            <RegisterForm/>
         </h2>
     </JoinLayout>
   )
