@@ -17,6 +17,7 @@ export function JoinLayout (props) {
         if (user) router.push("/");
     },[])
    
+
     if (user) return null;
 
     return (

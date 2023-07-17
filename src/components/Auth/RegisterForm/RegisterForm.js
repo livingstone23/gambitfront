@@ -5,9 +5,11 @@ import { useFormik } from "formik";
 import { authCtrl } from "@/api"
 import styles from "./RegisterForm.module.scss";
 import {initialValues, validationSchema } from "./RegisterForm.form"
+import { Amplify } from "aws-amplify";
 
 
 export function RegisterForm() {
+  
   const router = useRouter();
 
   const formik = useFormik({
@@ -18,9 +20,10 @@ export function RegisterForm() {
       try {
         console.log(formValue.email)
         console.log(formValue.password)
+
         const response = await authCtrl.register(formValue.email, formValue.password)
         console.log(response);
-        //router.push(`/join/confirmation?email=${formValue.email}`)
+        router.push(`/join/confirmation?email=${formValue.email}`)
 
       } catch (error) {
         console.log("catch error");
