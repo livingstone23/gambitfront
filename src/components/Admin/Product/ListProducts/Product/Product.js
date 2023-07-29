@@ -5,12 +5,14 @@ import { Modal } from "@/components/Shared";
 import { ProductForm } from "../../ProductForm";
 import { ProductImageForm } from "../../ProductImageForm";
 import styles from "./Product.module.scss";
+import { productCtrl } from "@/api";
 
 const NOT_FOUND_IMAGE = "/images/not-found.jpg"
 
 export  function Product(props) {
   const {product, onReload } = props;
-  const [image, setImage] = useState(NOT_FOUND_IMAGE)
+  const [image, setImage] = useState(NOT_FOUND_IMAGE);
+  const [ showConfirm, setShowConfirm ] = useState();
   const [ openModal, setOpenModal ] = useState(false);
   const [ modalContent, setModalContent ] = useState(null);
   //const image = fn.getUrlImage(product.prodID)
@@ -29,6 +31,22 @@ export  function Product(props) {
 
   },[product]);
 
+
+  const onOpenCloseConfirm = () => setShowConfirm(prevState => !prevState)
+
+  const onDelete = async () => {
+    try {
+        
+        await productCtrl.delete(product.prodID);
+        onReload();
+        onOpenCloseConfirm();
+        
+
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  
 
   const closeModal = () => {
       setOpenModal(false)
@@ -68,11 +86,17 @@ export  function Product(props) {
        <Table.Cell>{product.prodPrice}$</Table.Cell> 
        <Table.Cell>{product.prodStock} UNIDADES</Table.Cell> 
        <Table.Cell className={styles.actions}>
-          <Icon name="pencil" link onClick={openEditProduct} />
-          <Icon name="image" link onClick={openEditImageProduct} />
-          <Icon name="trash" link />
+          <Icon name="pencil" link  onClick={openEditProduct} />
+          <Icon name="image" link   onClick={openEditImageProduct} />
+          <Icon name="trash" link   onClick={onOpenCloseConfirm} />
         </Table.Cell> 
 
+        <Modal.Confirm  
+          open={showConfirm}
+          onCancel={onOpenCloseConfirm}
+          onConfirm={onDelete}
+          content={`¿Estas seguro de eliminar el producto (${product.prodTitle})?`}
+        />
 
         <Modal.Basic 
           show={openModal} 

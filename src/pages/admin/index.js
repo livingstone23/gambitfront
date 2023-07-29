@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useAuth } from "@/hooks";
 import { BasicLayout } from "@/layouts";
 import { Search  } from "@/components/Shared";
-import { Product } from "@/components/Admin";
+import { Product, Category } from "@/components/Admin";
 import styles  from "./admin.module.scss";
 
 export default function AdminPage() {
@@ -41,9 +41,11 @@ export default function AdminPage() {
                 <Tab.Pane>
                     <div className={styles.actions} > 
                         <div />
-                        <span>Add product</span>
+                        <Category.AddCategory onReload={onReload} />
                     </div>
-                    <h2>Categorias ...</h2>
+                    
+                    <Category.ListCategories reload={reload} onReload={onReload} />
+
                 </Tab.Pane>
             )
         },

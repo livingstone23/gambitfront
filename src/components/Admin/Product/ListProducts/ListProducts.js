@@ -3,7 +3,7 @@ import { Table } from "semantic-ui-react";
 import { size, map } from "lodash";
 import { useRouter } from "next/router"
 import { productCtrl } from "@/api";
-import { Loading, Pagination } from "@/components/Shared"
+import { Loading, Pagination, NoResult } from "@/components/Shared"
 import { Product } from "./Product"
 
 const ITEMS_PER_PAGE = 10;
@@ -62,7 +62,7 @@ export function ListProducts(props) {
                 <Table.Body>
                     {size(products) ===0 && (
                         <Table.Cell colSpan="5">
-                            <p>No hay resultados</p>
+                            <NoResult text="No hay productos" />
                         </Table.Cell>
                     )}
 

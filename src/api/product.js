@@ -1,4 +1,5 @@
 import { ENV, authFetch } from "@/utils"
+import { env } from "../../next.config";
 
 async function getAllProducts(page =1, pageSize=10, search="") {
     try {
@@ -96,10 +97,29 @@ async function updateImage(productId, image) {
     }
 }
 
+async function deleteProduct(productId) {
+    try {
+        
+        const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PRODUCT}/${productId}`;
+        const params = { method:"DELETE" }
+        
+        const response = await authFetch(url, params);
+
+        if (response.status !== 200) throw response;
+
+
+        return true;
+    } catch (error) {
+        throw error;
+    }
+}
+
 
 export const productCtrl = {
     getAll: getAllProducts,
     create: createProduct,
     update: updateProduct,
+    delete: deleteProduct,
     updateImage,
+    
 };
